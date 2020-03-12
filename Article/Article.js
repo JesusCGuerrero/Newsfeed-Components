@@ -85,6 +85,32 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Ash Ketchum is the worst Pokemon trainer of all time',
+    date: 'Jan 20th, 2020',
+    firstParagraph: `the main protagonist of the Pokémon Anime.
+          He is an eternally 10 year-old boy that has always dreamed of becoming a Pokémon Master. 
+          He is the first human character to be introduced in the series, 
+          and is currently the only character shown to have been to all of the regions. 
+          Ash is the winner of the Orange League and is also the Alola region's champion, 
+          receiving the title after winning its first Pokémon League Conference.`,
+
+    secondParagraph: `As soon as he turned 10 years old, 
+          Ash rushed to Professor Oak's Laboratory to get his first Pokémon. 
+          Originally wanting to choose Squirtle, 
+          Ash ended up receiving the Pokémon Pikachu instead, 
+          as he arrived late (thus leaving him with no other Starters to choose from). 
+          At first, Pikachu did not obey Ash and kept running away, so Ash had to tie him up. 
+          After getting chased by a flock of Spearow later in the day thanks to Ash's recklessness, 
+          Ash attempted to save Pikachu from them.`,
+
+    thirdParagraph: `Seeing that Ash was so determined to help him, 
+          Pikachu protected Ash from the Spearow by electrocuting the entire flock 
+          (which was thanks to being struck by lightning at that exact moment and having his Electric-type move supercharged). 
+          From then on, Pikachu and Ash became best friends forever. 
+          As an unskilled trainer, Ash traveled with Misty and Brock throughout the Kanto region, 
+          capturing new Pokémon along the way.`
   }
 ];
 
@@ -112,3 +138,53 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+
+function component1 (passTitle, passDate, passFirstParagraph, passSecondParagraph, passThirdParagraph) {
+  const article = document.createElement('div');
+  const h2 = document.createElement('h2');
+  const date = document.createElement('p');
+  const paragraph1 = document.createElement('p');
+  const paragraph2 = document.createElement('p');
+  const paragraph3 = document.createElement('p');
+  const expandButton = document.createElement('span');
+  const closeButton = document.createElement('span');
+
+  article.append(h2);
+  article.append(expandButton);
+ 
+  article.append(date);
+  article.append(paragraph1);
+  article.append(paragraph2);
+  article.append(paragraph3);
+
+  h2.textContent = passTitle;
+  date.textContent = passDate;
+  paragraph1.textContent = passFirstParagraph;
+  paragraph2.textContent = passSecondParagraph;
+  paragraph3.textContent = passThirdParagraph;
+  expandButton.textContent = 'Expand'
+  closeButton.textContent = 'Close'
+
+  article.classList.add('article');
+  date.classList.add('date');
+  expandButton.classList.add('expand-button');
+
+  expandButton.addEventListener('click', (event) => {
+    article.classList.toggle('article-open')
+  }) 
+
+  closeButton.addEventListener('click', (event) => {
+    article.classList.toggle('article-obliterate')
+  })
+  article.append(closeButton);
+
+  return article
+};
+
+const articles = document.querySelector('.articles');
+
+data.map( data => {
+  articles.append(component1(data.title, data.date, data.firstParagraph, data.secondParagraph, data.thirdParagraph))
+})
+
+
